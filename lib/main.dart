@@ -1,8 +1,15 @@
+import 'package:alexislucas/provider/ArticleModal.dart';
+import 'package:alexislucas/screen/HomePage/homepage.dart';
 import 'package:flutter/material.dart';
-import './VueArticle/AritucleVue.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ArticleModal(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,13 +19,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+
       ),
-      home: const AritucleVue(),
+      home: HomePage(),
     );
   }
 }
-
 
