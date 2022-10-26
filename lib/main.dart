@@ -1,9 +1,16 @@
+import 'package:alexislucas/provider/ContactModal.dart';
 import 'package:flutter/material.dart';
-import './VueArticle/AritucleVue.dart';
-import 'modal/ListeContact.dart';
+import 'package:provider/provider.dart';
+import 'listContact/ListContact.dart';
+import 'modal/Contact.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      ChangeNotifierProvider(
+        create: (context) => ContactModal(),
+        child: const MyApp(),
+      ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,16 +25,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const ListContact(),
-    );
-  }
-}
-class ListContact extends StatelessWidget {
-  const ListContact({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Consumer<ListeContact>(),
     );
   }
 }
