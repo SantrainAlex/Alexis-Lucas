@@ -1,7 +1,7 @@
 
 import 'package:alexislucas/provider/ArticleModal.dart';
 import 'package:alexislucas/provider/ContactModal.dart';
-import 'package:alexislucas/screen/listContact/ListContact.dart';
+import 'package:alexislucas/screen/HomePage/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ListContact(),
+      home: HomePage(),
     );
   }
 }
