@@ -2,6 +2,7 @@
 import 'package:alexislucas/provider/ArticleModal.dart';
 import 'package:alexislucas/provider/ContactModal.dart';
 import 'package:alexislucas/screen/HomePage/homepage.dart';
+import 'package:alexislucas/screen/listContact/ListContact.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -47,10 +48,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const TextStyle optionStyle =
   TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Index 0: Clients',
-      style: optionStyle,
-    ),
+    ListContact(),
     HomePage(),
     Text(
       'Index 2: Historique',

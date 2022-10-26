@@ -26,10 +26,7 @@ class ListContact extends StatelessWidget {
                 ),
                 child: ListTile(
                   title: Text('${currentItem.name}'),
-                  trailing: IconButton(onPressed: () => {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ContactSlectionner(),))
-                  },
-                  icon: Icon(Icons.arrow_right,),),
+                  trailing: Icon(Icons.arrow_right),
                   leading: Container(
                     width: 20,
                     height: 200,
@@ -39,6 +36,11 @@ class ListContact extends StatelessWidget {
                         )
                     ),
                   ),
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ContactSlectionner(),
+                    ));
+                  },
                 ),
               );
             },);
