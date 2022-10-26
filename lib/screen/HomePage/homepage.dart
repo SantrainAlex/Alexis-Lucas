@@ -1,4 +1,5 @@
 import 'package:alexislucas/provider/ArticleModal.dart';
+import 'package:alexislucas/screen/VueArticle/ArticleVue.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,6 +13,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,6 +24,9 @@ class _HomePageState extends State<HomePage> {
         title: Text("Les Produits"),
       ),
       body: Container(
+        padding: EdgeInsets.fromLTRB(10, 25, 10, 0),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         child: Consumer<ArticleModal>(
           builder: (context, articleModal, child) {
             List<Article> articles = articleModal.articles;
@@ -52,6 +59,11 @@ class _HomePageState extends State<HomePage> {
                       ? Text("1 exemplaire restant")
                       : Text("Stock épuisé"),
                     trailing: Text("${currentArticle.prix} €"),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => ArticleVue(article: currentArticle)
+                      ));
+                    },
                   ),
                 );
               },
