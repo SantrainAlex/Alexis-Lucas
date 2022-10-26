@@ -1,12 +1,16 @@
+
 import 'package:alexislucas/provider/ArticleModal.dart';
-import 'package:alexislucas/screen/HomePage/homepage.dart';
+import 'package:alexislucas/provider/ContactModal.dart';
+import 'package:alexislucas/screen/listContact/ListContact.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ArticleModal(),
+    MultiProvider(providers: [
+      ChangeNotifierProvider<ArticleModal>(create: (context) => ArticleModal()),
+      ChangeNotifierProvider<ContactModal>(create: (context) => ContactModal()),
+    ],
       child: const MyApp(),
     ),
   );
@@ -24,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: ListContact(),
     );
   }
 }

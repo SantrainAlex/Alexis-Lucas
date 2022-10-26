@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../modal/Contact.dart';
-import '../provider/ContactModal.dart';
+
+import '../../modal/Contact.dart';
+import '../../provider/ContactModal.dart';
+import 'Contact.dart';
 
 class ListContact extends StatelessWidget {
   const ListContact({Key? key}) : super(key: key);
@@ -24,7 +26,10 @@ class ListContact extends StatelessWidget {
                 ),
                 child: ListTile(
                   title: Text('${currentItem.name}'),
-                  trailing: IconButton(onPressed: () => print('btn suivant'), icon: Icon(Icons.arrow_right,),),
+                  trailing: IconButton(onPressed: () => {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ContactSlectionner(),))
+                  },
+                  icon: Icon(Icons.arrow_right,),),
                   leading: Container(
                     width: 20,
                     height: 200,
