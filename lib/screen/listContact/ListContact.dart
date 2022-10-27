@@ -38,7 +38,7 @@ class ListContact extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => ContactSlectionner(),
+                        builder: (context) => ContactSlectionner(contact: currentItem,),
                     ));
                   },
                 ),

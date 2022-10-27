@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../modal/Article.dart';
+import '../../modal/Contact.dart';
 import '../../provider/ArticleModal.dart';
 
 class ContactSlectionner extends StatelessWidget {
-  const ContactSlectionner({Key? key}) : super(key: key);
+  const ContactSlectionner({Key? key, required this.contact}) : super(key: key);
 
-
+  final Contact contact;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +27,9 @@ class ContactSlectionner extends StatelessWidget {
                 height: 50,
               ),
             ),
-            Text('Mon nom', style: TextStyle(fontSize: 10)),
+            Text('${contact.name}', style: TextStyle(fontSize: 10)),
             Text(
-              'Mon tel 1111111 N°Siret 0000000',
+              'tel: ${contact.tel} N°Siret: ${contact.siret}',
               style: TextStyle(fontSize: 10),
             ),
             Text('Vendu'),
