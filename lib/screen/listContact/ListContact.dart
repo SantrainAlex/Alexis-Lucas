@@ -10,41 +10,50 @@ class ListContact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Consumer<ContactModal>(
-        builder: (context, contactModal, child) {
-          List<Contact> contacts = contactModal.contacts;
-          return ListView.builder(
-            itemCount: contacts.length,
-            itemBuilder: (context, index) {
-              Contact currentItem = contacts[index];
-              return Card(
-                elevation: 20,
-                margin: EdgeInsets.all(2),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: ListTile(
-                  title: Text('${currentItem.name}'),
-                  trailing: Icon(Icons.arrow_right),
-                  leading: Container(
-                    width: 20,
-                    height: 200,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('/images/contact.png')
-                        )
-                    ),
+    return Scaffold(
+      appBar: AppBar(
+        leading: Icon(Icons.list_alt, color: Colors.white),
+        title: Text("Liste Clients")
+      ),
+      body: Container(
+        padding: EdgeInsets.fromLTRB(10, 25, 10, 0),
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        child: Consumer<ContactModal>(
+          builder: (context, contactModal, child) {
+            List<Contact> contacts = contactModal.contacts;
+            return ListView.builder(
+              itemCount: contacts.length,
+              itemBuilder: (context, index) {
+                Contact currentItem = contacts[index];
+                return Card(
+                  elevation: 20,
+                  margin: EdgeInsets.all(6),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
                   ),
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                  child: ListTile(
+                    title: Text('${currentItem.name}'),
+                    trailing: Icon(Icons.arrow_right),
+                    leading: Container(
+                      width: 20,
+                      height: 200,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('/images/contact.png')
+                          )
+                      ),
+                    ),
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => ContactSlectionner(),
-                    ));
-                  },
-                ),
-              );
-            },);
-        },
+                      ));
+                    },
+                  ),
+                );
+              },);
+          },
+        ),
       ),
     );
   }
