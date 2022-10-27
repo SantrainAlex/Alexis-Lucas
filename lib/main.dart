@@ -1,6 +1,6 @@
 
 import 'package:alexislucas/provider/ArticleModal.dart';
-import 'package:alexislucas/modal/ContactModal.dart';
+import 'package:alexislucas/provider/ContactModal.dart';
 import 'package:alexislucas/screen/HomePage/homepage.dart';
 import 'package:alexislucas/screen/listContact/ListContact.dart';
 import 'package:flutter/material.dart';

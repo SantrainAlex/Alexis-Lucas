@@ -4,7 +4,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 
-import 'Contact.dart';
+import '../modal/Contact.dart';
 
 class ContactModal extends ChangeNotifier{
   List<Contact> _contacts = [
