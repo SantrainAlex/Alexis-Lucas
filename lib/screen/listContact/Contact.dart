@@ -1,6 +1,8 @@
+import 'package:alexislucas/screen/listContact/ListContact.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../main.dart';
 import '../../modal/Article.dart';
 import '../../modal/Contact.dart';
 import '../../provider/ArticleModal.dart';
@@ -14,8 +16,15 @@ class ContactSlectionner extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.home, color: Colors.white),
-        title: Text("Contact"),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => MyStatefulWidget(pageSelected: 0)
+            ));
+          },
+          icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
+        ),
+        title: Text("Détail du client"),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,

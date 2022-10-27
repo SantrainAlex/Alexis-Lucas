@@ -12,6 +12,10 @@ class ListContact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+      leading: Icon(Icons.list_alt, color: Colors.white),
+        title: Text("Liste Clients")
+    ),
       body: Container(
         child: Consumer<ContactModal>(
           builder: (context, contactModal, child) {
@@ -22,7 +26,7 @@ class ListContact extends StatelessWidget {
                 Contact currentItem = contacts[index];
                 return Card(
                   elevation: 20,
-                  margin: EdgeInsets.all(2),
+                  margin: EdgeInsets.all(6),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15.0),
                   ),
