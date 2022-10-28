@@ -1,9 +1,11 @@
 import 'package:alexislucas/provider/ArticleModal.dart';
 import 'package:alexislucas/provider/ContactModal.dart';
+import 'package:alexislucas/screen/Facture.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'footer.dart';
+import 'screen/footer.dart';
+import 'modal/Article.dart';
 
 void main() {
   runApp(
@@ -31,9 +33,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyStatefulWidget(),
+      home: Facture(),
     );
   }
 }
-
 
