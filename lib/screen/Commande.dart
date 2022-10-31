@@ -34,6 +34,9 @@ class _CommandeState extends State<Commande> {
     valueachatVente = venteAchat.first;
     listeContact =
         Provider.of<ContactModal>(context, listen: false).contacts.first;
+
+    selectedContact = listeContact;
+    isAchat = true;
     super.initState();
   }
 
@@ -197,6 +200,7 @@ class _CommandeState extends State<Commande> {
             ),
             TextButton(
                 onPressed: () {
+                  print(selectedContact);
                   Historique historique = Historique(articles: listePanier, contact: selectedContact, isAchat: isAchat, quantite: lenghtPanier, total: totalPanier);
                   Provider.of<HistoriqueModal>(context, listen: false).add(historique);
                   Provider.of<PanierModal>(context, listen: false).clearPanier();
