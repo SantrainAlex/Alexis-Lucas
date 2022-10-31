@@ -2,9 +2,6 @@ import 'package:alexislucas/provider/ArticleModal.dart';
 import 'package:alexislucas/provider/ContactModal.dart';
 import 'package:alexislucas/provider/HistoriqueModal.dart';
 import 'package:alexislucas/provider/PanierModal.dart';
-import 'package:alexislucas/screen/HistoriquePage/HistoriquePage.dart';
-import 'package:alexislucas/screen/HomePage/homepage.dart';
-import 'package:alexislucas/screen/listContact/ListContact.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

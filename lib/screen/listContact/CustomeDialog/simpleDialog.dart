@@ -56,8 +56,6 @@ class _CustomDialogState extends State<CustomDialog> {
                         .add(Contact(name: _name.text, siret: _siret.text, tel: _tel.text));
                     Navigator.pop(context);
                   }
-
-
             },
                 child: const Text("Valider"))
           ],
@@ -68,7 +66,7 @@ class _CustomDialogState extends State<CustomDialog> {
 
   String? validator(String? text) {
     if (text!.isEmpty) {
-      return "Text not be empty";
+      return "Veuillez remplir le champ ";
     } else {
       return null;
     }
