@@ -197,12 +197,7 @@ class _CommandeState extends State<Commande> {
             ),
             TextButton(
                 onPressed: () {
-                  print(lenghtPanier);
-                  print(listePanier);
-                  print(isAchat);
                   Historique historique = Historique(articles: listePanier, contact: selectedContact, isAchat: isAchat, quantite: lenghtPanier, total: totalPanier);
-                  print("Quantité ${historique.quantite}");
-                  print("Prix ${historique.total}");
                   Provider.of<HistoriqueModal>(context, listen: false).add(historique);
                   Provider.of<PanierModal>(context, listen: false).clearPanier();
                   Navigator.pop(context);

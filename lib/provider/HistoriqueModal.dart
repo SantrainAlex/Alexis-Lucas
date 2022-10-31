@@ -25,7 +25,6 @@ class HistoriqueModal extends ChangeNotifier {
   void add(Historique item) {
     _historiques.add(item);
     notifyListeners();
-    print(_historiques);
   }
 
   static int getQuantite() {
