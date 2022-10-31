@@ -204,6 +204,7 @@ class _CommandeState extends State<Commande> {
                   Historique historique = Historique(articles: listePanier, contact: selectedContact, isAchat: isAchat, quantite: lenghtPanier, total: totalPanier);
                   Provider.of<HistoriqueModal>(context, listen: false).add(historique);
                   Provider.of<PanierModal>(context, listen: false).clearPanier();
+                  print(Provider.of<HistoriqueModal>(context, listen: false).historiques);
                   Navigator.pop(context);
                 },
                 child: Text('Valider la commande ')),

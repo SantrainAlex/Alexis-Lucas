@@ -21,7 +21,7 @@ class HistoriquePage extends StatelessWidget {
             builder: (context, historiqueModal, child) {
               List<Historique> historiques = historiqueModal.historiques;
               return ListView.builder(
-                itemCount: historiques.length,
+                itemCount: historiques.length ,
                 itemBuilder: (context, index) {
                   Historique currentHistorique = historiques[index];
                   return Card(
@@ -38,7 +38,7 @@ class HistoriquePage extends StatelessWidget {
                           maxWidth: 64,
                           maxHeight: 64,
                         ),
-                        child: Image.asset(currentHistorique.articles[1].image, fit: BoxFit.cover),
+                        child: Image.asset("images/histoireIcone.png", fit: BoxFit.cover),
                       ),
                       title: Text("Commande de ${currentHistorique.contact.name}"),
                       subtitle: (Text("Nombre d'articles: ${currentHistorique.quantite}")),
