@@ -1,3 +1,4 @@
+import 'package:alexislucas/screen/HistoriquePage/HistoriquePage.dart';
 import 'package:alexislucas/screen/HomePage/homepage.dart';
 import 'package:alexislucas/screen/listContact/ListContact.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +17,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const List<Widget> _widgetOptions = <Widget>[
     ListContact(),
     HomePage(),
-    Text(
-      'Index 2: Historique',
-      style: optionStyle,
-    ),
+    HistoriquePage()
   ];
 
   void _onItemTapped(int index) {
