@@ -1,6 +1,9 @@
 
 import 'package:alexislucas/provider/ArticleModal.dart';
-import 'package:alexislucas/modal/ContactModal.dart';
+import 'package:alexislucas/provider/ContactModal.dart';
+import 'package:alexislucas/provider/HistoriqueModal.dart';
+import 'package:alexislucas/provider/PanierModal.dart';
+import 'package:alexislucas/screen/HistoriquePage/HistoriquePage.dart';
 import 'package:alexislucas/screen/HomePage/homepage.dart';
 import 'package:alexislucas/screen/listContact/ListContact.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +14,8 @@ void main() {
     MultiProvider(providers: [
       ChangeNotifierProvider<ArticleModal>(create: (context) => ArticleModal()),
       ChangeNotifierProvider<ContactModal>(create: (context) => ContactModal()),
+      ChangeNotifierProvider<HistoriqueModal>(create: (context) => HistoriqueModal()),
+      ChangeNotifierProvider<PanierModal>(create: (context) => PanierModal()),
     ],
       child: const MyApp(),
     ),
@@ -51,10 +56,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   static const List<Widget> _widgetOptions = <Widget>[
     ListContact(),
     HomePage(),
-    Text(
-      'Index 2: Historique',
-      style: optionStyle,
-    ),
+    HistoriquePage()
   ];
 
   void _onItemTapped(int index) {

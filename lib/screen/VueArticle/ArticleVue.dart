@@ -14,9 +14,7 @@ class ArticleVue extends StatelessWidget {
       appBar: AppBar(
           leading: IconButton(
             onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => MyStatefulWidget(pageSelected: 1)
-              ));
+              Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back_ios_new, color: Colors.white),
           ),

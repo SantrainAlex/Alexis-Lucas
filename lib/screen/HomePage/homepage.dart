@@ -1,4 +1,5 @@
 import 'package:alexislucas/provider/ArticleModal.dart';
+import 'package:alexislucas/provider/PanierModal.dart';
 import 'package:alexislucas/screen/VueArticle/ArticleVue.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -34,42 +34,62 @@ class _HomePageState extends State<HomePage> {
               itemCount: articles.length,
               itemBuilder: (context, index) {
                 Article currentArticle = articles[index];
-                return Card(
-                  elevation: 20,
-                  margin: EdgeInsets.all(8),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15.0)
-                  ),
-                  child: ListTile(
-                    leading: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        minWidth: 64,
-                        minHeight: 44,
-                        maxWidth: 64,
-                        maxHeight: 64,
-                      ),
-                      child: Image.asset(currentArticle.image, fit: BoxFit.cover),
+                return Center(
+                  child: Card(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        ListTile(
+                          leading: ConstrainedBox(
+                            constraints: BoxConstraints(
+                              minWidth: 64,
+                              minHeight: 44,
+                              maxWidth: 64,
+                              maxHeight: 64,
+                            ),
+                            child: Image.asset(currentArticle.image, fit: BoxFit.cover),
+                          ),
+                          title: Text(currentArticle.nom),
+                          subtitle: (currentArticle.quantite >= 4)
+                              ? Text("En stock")
+                              : (currentArticle.quantite < 4 && currentArticle.quantite > 1)
+                              ? Text("${currentArticle.quantite} exemplaires restants")
+                              : (currentArticle.quantite == 1)
+                              ? Text("1 exemplaire restant")
+                              : Text("Stock épuisé"),
+                          trailing: Text("${currentArticle.prix} €"),
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ArticleVue(article: currentArticle)
+                            ));
+                          },
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            TextButton(
+                              child: const Text('Ajouter au panier'),
+                              onPressed: () {
+                                Provider.of<PanierModal>(context, listen: false).add(currentArticle);
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                    title: Text(currentArticle.nom),
-                    subtitle: (currentArticle.quantite >= 4)
-                      ? Text("En stock")
-                      : (currentArticle.quantite < 4 && currentArticle.quantite > 1)
-                      ? Text("${currentArticle.quantite} exemplaires restants")
-                      : (currentArticle.quantite == 1)
-                      ? Text("1 exemplaire restant")
-                      : Text("Stock épuisé"),
-                    trailing: Text("${currentArticle.prix} €"),
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ArticleVue(article: currentArticle)
-                      ));
-                    },
                   ),
                 );
               },
             );
           }
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          print("Commander");
+        },
+        label: const Text('Commander'),
+        icon: const Icon(Icons.shopping_cart),
       ),
     );
   }

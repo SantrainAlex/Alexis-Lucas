@@ -8,4 +8,5 @@ class Article {
   String image;
 
   Article({ required this.id, required this.nom, required this.prix, required this.numeroSerie, required this.quantite, required this.image });
+
 }

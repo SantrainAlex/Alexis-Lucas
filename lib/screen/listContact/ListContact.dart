@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../modal/Contact.dart';
-import '../../modal/ContactModal.dart';
+import '../../provider/ContactModal.dart';
 import 'Contact.dart';
 import 'CustomeDialog/simpleDialog.dart';
 

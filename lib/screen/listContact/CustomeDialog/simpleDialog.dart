@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../modal/Contact.dart';
-import '../../../modal/ContactModal.dart';
+import '../../../provider/ContactModal.dart';
 
 class CustomDialog extends StatefulWidget {
   const CustomDialog({Key? key}) : super(key: key);

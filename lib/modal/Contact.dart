@@ -1,6 +1,7 @@
 import 'package:uuid/uuid.dart';
 
 class Contact{
+
   final Uuid id;
   final String name;
   final String siret;
