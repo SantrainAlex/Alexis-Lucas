@@ -41,7 +41,14 @@ class _CommandeState extends State<Commande> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.home, color: Colors.white),
+        leading:
+        IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.home, color: Colors.white),
+        ),
+
         title: Text("Passer une commande "),
       ),
       body: Container(
