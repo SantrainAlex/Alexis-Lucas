@@ -11,5 +11,5 @@ class Historique {
   final int quantite;
   final double total;
 
-  Historique({ this.id = const Uuid(), required this.articles, required this.contact, required this.isAchat, required this.quantite, required this.total});
+  Historique({ this.id = const Uuid(), required this.articles, required this.contact, required this.isAchat ,required this.quantite, required this.total});
 }

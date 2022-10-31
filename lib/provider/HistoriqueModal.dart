@@ -22,6 +22,11 @@ class HistoriqueModal extends ChangeNotifier {
 
   UnmodifiableListView<Historique> get historiques => UnmodifiableListView(_historiques);
 
+  void add(Historique item) {
+    _historiques.add(item);
+    notifyListeners();
+    print(_historiques);
+  }
 
   static int getQuantite() {
     int quantiteTotal = 0;

@@ -1,5 +1,6 @@
 import 'package:alexislucas/provider/ArticleModal.dart';
 import 'package:alexislucas/provider/PanierModal.dart';
+import 'package:alexislucas/screen/Commande.dart';
 import 'package:alexislucas/screen/VueArticle/ArticleVue.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -86,7 +87,9 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          print("Commander");
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => Commande()
+          ));
         },
         label: const Text('Commander'),
         icon: const Icon(Icons.shopping_cart),

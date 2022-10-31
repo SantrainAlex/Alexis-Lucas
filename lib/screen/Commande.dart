@@ -1,3 +1,6 @@
+import 'package:alexislucas/modal/Historique.dart';
+import 'package:alexislucas/modal/Panier.dart';
+import 'package:alexislucas/provider/HistoriqueModal.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -5,6 +8,7 @@ import '../modal/Article.dart';
 import '../modal/Contact.dart';
 import '../provider/ArticleModal.dart';
 import '../provider/ContactModal.dart';
+import '../provider/PanierModal.dart';
 import 'VueArticle/ArticleVue.dart';
 class Commande extends StatefulWidget {
   const Commande({Key? key}) : super(key: key);
@@ -14,17 +18,21 @@ class Commande extends StatefulWidget {
 }
 
 class _CommandeState extends State<Commande> {
-  Contact? dropdownvalue;
+  Contact? listeContact;
+  static const List<String> venteAchat = <String>['Vente', 'Achat'];
+  static String valueachatVente = '';
+  var selectedContact;
+  var listePanier;
+  var isAchat;
+  var lenghtPanier;
+  var totalPanier;
 
-  static const List<String> venduAchat = <String>['Vendu', 'Acheter'];
-  static String valueachatvendu = '';
-  int nbrArticle = 1;
 
   @override
   void initState() {
     // TODO: implement initState
-    valueachatvendu = venduAchat.first;
-    dropdownvalue =
+    valueachatVente = venteAchat.first;
+    listeContact =
         Provider.of<ContactModal>(context, listen: false).contacts.first;
     super.initState();
   }
@@ -54,7 +62,7 @@ class _CommandeState extends State<Commande> {
                       builder: (context, contactModal, child) {
                         return DropdownButton(
                           alignment: Alignment.center,
-                          value: dropdownvalue,
+                          value: listeContact,
                           icon: Icon(Icons.keyboard_arrow_down),
                           items: contactModal.contacts.map((contact) {
                             return DropdownMenuItem(
@@ -68,7 +76,8 @@ class _CommandeState extends State<Commande> {
                           }).toList(),
                           onChanged: (value) {
                             setState(() {
-                              dropdownvalue = value!;
+                              listeContact = value!;
+                              selectedContact = value;
                             });
                           },
                         );
@@ -93,9 +102,9 @@ class _CommandeState extends State<Commande> {
                       underline: Container(
                         height: 5,
                       ),
-                      value: valueachatvendu,
+                      value: valueachatVente,
                       icon: Icon(Icons.keyboard_arrow_down),
-                      items: venduAchat.map((value) {
+                      items: venteAchat.map((value) {
                         return DropdownMenuItem(
                             alignment: Alignment.center,
                             value: value,
@@ -108,7 +117,12 @@ class _CommandeState extends State<Commande> {
                       }).toList(),
                       onChanged: (value) {
                         setState(() {
-                          valueachatvendu = value!;
+                          valueachatVente = value!;
+                          if (value! == "Vente") {
+                            isAchat = true;
+                          } else {
+                            isAchat = false;
+                          }
                         });
                       },
                     ),
@@ -120,13 +134,16 @@ class _CommandeState extends State<Commande> {
               padding: EdgeInsets.fromLTRB(10, 25, 10, 0),
               height: 400,
               width: MediaQuery.of(context).size.width,
-              child: Consumer<ArticleModal>(
-                  builder: (context, articleModal, child) {
-                    List<Article> articles = articleModal.articles;
+              child: Consumer<PanierModal>(
+                  builder: (context, panierModal, child) {
+                    List<Article> articles = panierModal.getArticles;
                     return ListView.builder(
-                      itemCount: 3,
+                      itemCount: articles.length,
                       itemBuilder: (context, index) {
                         Article currentArticle = articles[index];
+                        listePanier = articles;
+                        lenghtPanier = panierModal.getQuantite();
+                        totalPanier = panierModal.getPrixTotal();
                         return Card(
                           elevation: 20,
                           margin: EdgeInsets.all(8),
@@ -156,23 +173,6 @@ class _CommandeState extends State<Commande> {
                                       : (currentArticle.quantite == 1)
                                       ? Text("1 exemplaire restant")
                                       : Text("Stock épuisé"),
-                                  TextButton(
-                                      onPressed: () {
-                                        setState(() {
-
-                                          nbrArticle++;
-                                        });
-                                      },
-                                      child: Text('+')),
-                                  Text(this.nbrArticle.toString()),
-                                  TextButton(
-                                      onPressed: () {
-                                        setState(() {
-
-                                          nbrArticle--;
-                                        });
-                                      },
-                                      child: Text('-')),
                                 ],
                               ),
                             ),
@@ -190,7 +190,15 @@ class _CommandeState extends State<Commande> {
             ),
             TextButton(
                 onPressed: () {
-                  print('validation de la commande');
+                  print(lenghtPanier);
+                  print(listePanier);
+                  print(isAchat);
+                  Historique historique = Historique(articles: listePanier, contact: selectedContact, isAchat: isAchat, quantite: lenghtPanier, total: totalPanier);
+                  print("Quantité ${historique.quantite}");
+                  print("Prix ${historique.total}");
+                  Provider.of<HistoriqueModal>(context, listen: false).add(historique);
+                  Provider.of<PanierModal>(context, listen: false).clearPanier();
+                  Navigator.pop(context);
                 },
                 child: Text('Valider la commande ')),
           ],
