@@ -68,6 +68,9 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
+                            (currentArticle.quantite == 0) ?
+                                Text('Ajouter au panier', style: TextStyle(color: Colors.grey),)
+                            :
                             TextButton(
                               child: const Text('Ajouter au panier'),
                               onPressed: () {
